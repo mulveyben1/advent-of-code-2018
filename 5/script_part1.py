@@ -17,4 +17,3 @@ for idx, i in enumerate(line):
     print(i + ' ' + line[idx+1])
     print(check_case(i, line[idx+1]))
 
-

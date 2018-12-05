@@ -9,7 +9,6 @@ for line in lines:
 
 out = []
 date.sort(key=lambda x: x[0])
-print(date)
 
 global time
 global begins
@@ -23,17 +22,12 @@ for ts in date:
         begins = 0
         ends = 0
         guards.append(guard)
-        print(guard + ' on @ ' + str(ts))
 
     if ts[1].find('wakes') != -1:
         ends = int(ts[0][4:])
         asleep.append([guard, ends, begins])
     if ts[1].find('falls') != -1:
         begins = int(ts[0][4:])
-    if begins != 0:  # falling asleep
-        print(guard + ' asleep @ ' + str(begins))
-    if ends != 0:
-        print(guard + ' awake @ ' + str(ends))
 
 guards = set(guards)
 
@@ -50,7 +44,6 @@ for idx, minute in enumerate(asl):
             maximum[0] = minute.count(guard)
             maximum[1] = int(guard)
             maximum[2] = idx
-print(maximum)
 print(maximum[2] * maximum[1])  # minute * guard id
 
 
