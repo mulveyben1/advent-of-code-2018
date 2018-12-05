@@ -36,30 +36,21 @@ for ts in date:
         print(guard + ' awake @ ' + str(ends))
 
 guards = set(guards)
-asl = [0 for i in range(10000)]
 
-for line in asleep:
-    guard = line[0]
-    asl[int(guard)] += line[1]-line[2]
-
-
-maximum = [0, 0]
-print(asl)
-for idx, num in enumerate(asl):
-    if num > maximum[0]:
-        maximum[0] = num
-        maximum[1] = idx
-
-sleepiest_guard = maximum[1]
-print(sleepiest_guard)
-
-sleeping = [0 for i in range(60)]
+asl = [[] for i in range(60)]
 
 for ts in asleep:
-    if str(ts[0]) == str(sleepiest_guard):
-        for i in range(ts[2], ts[1]):
-            sleeping[i] += 1
+    for i in range(ts[2], ts[1]):
+        asl[i].append(ts[0])
 
-
+maximum = [0, 0, 0]  # num times asleep, guard id, minute
+for idx, minute in enumerate(asl):
+    for guard in guards:
+        if minute.count(guard) > maximum[0]:
+            maximum[0] = minute.count(guard)
+            maximum[1] = int(guard)
+            maximum[2] = idx
+print(maximum)
+print(maximum[2] * maximum[1])  # minute * guard id
 
 
