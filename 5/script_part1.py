@@ -11,9 +11,22 @@ def check_case(char0, char1):
         return True
 
 
+def remove(lin):
+    new = list(lin)
+    for idx, i in enumerate(lin):
+        if idx + 1 == len(new):
+            print(new)
+            break
+        if check_case(i, new[idx + 1]):
+            new[idx] = ''
+            new[idx + 1] = ''
+            remove(new)
+
+'''
 for idx, i in enumerate(line):
     if idx + 1 == len(line):
         break
     print(i + ' ' + line[idx+1])
     print(check_case(i, line[idx+1]))
-
+'''
+remove(line)
