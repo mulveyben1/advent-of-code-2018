@@ -1,7 +1,7 @@
-with open('input.txt', 'r') as file:
+with open('input1.txt', 'r') as file:
     line = file.readlines()[0].strip('\n')
 
-
+line = list(line)
 def check_case(char0, char1):
     if char0.lower() != char1.lower():
         return False
@@ -11,22 +11,17 @@ def check_case(char0, char1):
         return True
 
 
-def remove(lin):
-    new = list(lin)
+def get_first_match(lin):
     for idx, i in enumerate(lin):
-        if idx + 1 == len(new):
-            print(new)
-            break
-        if check_case(i, new[idx + 1]):
-            new[idx] = ''
-            new[idx + 1] = ''
-            remove(new)
+        if check_case(i, lin[idx+1]):
+            return [idx, idx+1]
+        else:
+            return [0, 0]
 
-'''
-for idx, i in enumerate(line):
-    if idx + 1 == len(line):
-        break
-    print(i + ' ' + line[idx+1])
-    print(check_case(i, line[idx+1]))
-'''
-remove(line)
+
+def remove(li, lin):
+    for i in range(li[0], li[1]):
+        del lin[i]
+        del lin[i]
+
+
