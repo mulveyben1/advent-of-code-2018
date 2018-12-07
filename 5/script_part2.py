@@ -1,7 +1,8 @@
-with open('input.txt', 'r') as file:
-    line = file.readlines()[0].strip('\n')
-
-line = list(line)
+def removeletters(line, char):
+    for idx, i in enumerate(line):
+        if i.lower == char:
+            del line[idx]
+    return line
 
 
 def check_case(char0, char1):
@@ -34,8 +35,18 @@ def remove(li, lin):
             return True
 
 
-while True:
-    remove(get_first_match(line), line)
-    if not remove(get_first_match(line), line):
-        print(len(line))
-        exit()
+alphas = 'abcdefghijklmnopqrstuvwxyz'
+lengths = [0 for i in range(26)]
+for i in range(26):
+    with open('input.txt', 'r') as file:
+        line = file.readlines()[0].strip('\n')
+    line = list(line)
+    result = True
+    line = removeletters(line, alphas[i])
+    print('Removing %s' % alphas[i])
+    while result:
+        remove(get_first_match(line), line)
+        result = remove(get_first_match(line), line)
+    else:
+        lengths[i] = len(line)
+
