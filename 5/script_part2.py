@@ -1,7 +1,7 @@
 def removeletters(line, char):
-    for idx, i in enumerate(line):
-        if i.lower == char:
-            del line[idx]
+    while char in line:
+        line.remove(char)
+        line.remove(char.upper())
     return line
 
 
@@ -38,7 +38,7 @@ def remove(li, lin):
 alphas = 'abcdefghijklmnopqrstuvwxyz'
 lengths = [0 for i in range(26)]
 for i in range(26):
-    with open('input.txt', 'r') as file:
+    with open('input1.txt', 'r') as file:
         line = file.readlines()[0].strip('\n')
     line = list(line)
     result = True
@@ -47,6 +47,14 @@ for i in range(26):
     while result:
         remove(get_first_match(line), line)
         result = remove(get_first_match(line), line)
-    else:
+    if not result:
         lengths[i] = len(line)
 
+
+min = [0, 0]
+for idx, i in enumerate(lengths):
+    if i < min[0]:
+        min[0] = i
+        min[1] = idx
+print(str(min[0]) + 'chars @' + alphas[min[1]])
+print(lengths)
