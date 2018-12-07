@@ -38,7 +38,7 @@ def remove(li, lin):
 alphas = 'abcdefghijklmnopqrstuvwxyz'
 lengths = [0 for i in range(26)]
 for i in range(26):
-    with open('input1.txt', 'r') as file:
+    with open('input.txt', 'r') as file:
         line = file.readlines()[0].strip('\n')
     line = list(line)
     result = True
@@ -51,10 +51,9 @@ for i in range(26):
         lengths[i] = len(line)
 
 
-min = [0, 0]
+min = [100000, 0]
 for idx, i in enumerate(lengths):
     if i < min[0]:
         min[0] = i
         min[1] = idx
-print(str(min[0]) + 'chars @' + alphas[min[1]])
-print(lengths)
+print(str(min[0]) + ' chars @ ' + alphas[min[1]])
